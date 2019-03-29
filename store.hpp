@@ -10,10 +10,18 @@
 #define store_hpp
 
 #include <stdio.h>
-class Store {
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "json.hpp"
+#include "storage.hpp"
+using namespace std;
+class Store:public Storage{
 private:
-    
+    int storeNumb;
 public:
+    Store(string databaseName, string storageFaq);
     
+    void about(json good);
 };
 #endif /* store_hpp */
