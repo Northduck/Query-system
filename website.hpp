@@ -10,10 +10,22 @@
 #define website_hpp
 
 #include <stdio.h>
-class Website {
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "json.hpp"
+#include "storage.hpp"
+#include "store.hpp"
+using json = nlohmann::json;
+using namespace std;
+class Website{
 private:
-    
+    json database;
+    json ids;
+    Storage *next;
 public:
+    Website(string databaseName, string productIDs, Storage *nextObj);
     
+    void websiteSearch(json product, int quantity);
 };
 #endif /* website_hpp */
