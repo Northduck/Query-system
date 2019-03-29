@@ -10,10 +10,19 @@
 #define warehouse_hpp
 
 #include <stdio.h>
-class Warehouse {
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "json.hpp"
+#include "storage.hpp"
+#include "store.hpp"
+using namespace std;
+class Warehouse:public Storage  {
 private:
     
 public:
+    Warehouse(string databaseName, string storageFaq);
     
+    void about(json good);
 };
 #endif /* warehouse_hpp */
