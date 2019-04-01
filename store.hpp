@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "json.hpp"
 #include "storage.hpp"
 using namespace std;
@@ -20,8 +21,8 @@ class Store:public Storage{
 private:
     int storeNumb;
 public:
-    Store(string databaseName, string storageFaq);
+    Store(string databaseName, string storageFaq, int numb);
     
-    void about(json good);
+    void about(json good, std::vector<bool> &shopInStock);
 };
 #endif /* store_hpp */

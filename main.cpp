@@ -58,17 +58,17 @@ int main() {
     cout<<costumerProduct;
     Storage *ourDatabase[4];
     ourDatabase[0]=new Warehouse("../Database/Warehouse.json", "../Info/Warehouse_info.json");
-    ourDatabase[1]=new Store("../Database/Shop3.json", "../Info/Shop3_info.json");
-    ourDatabase[2]=new Store("../Database/Shop2.json", "../Info/Shop2_info.json");
-    ourDatabase[3]=new Store("../Database/Shop1.json", "../Info/Shop1_info.json");
-    ourDatabase[3]->addNext(ourDatabase[2]);
-    ourDatabase[3]->addNext(ourDatabase[1]);
-    ourDatabase[3]->addNext(ourDatabase[0]);
-    Website site("../Database/Site.json","../Database/Site_ID.json", ourDatabase[3]);
-    site.websiteSearch(costumerProduct, 90);
+    ourDatabase[1]=new Store("../Database/Shop1.json", "../Info/Shop1_info.json",0);
+    ourDatabase[2]=new Store("../Database/Shop2.json", "../Info/Shop2_info.json",1);
+    ourDatabase[3]=new Store("../Database/Shop3.json", "../Info/Shop3_info.json",2);
+    ourDatabase[1]->addNext(ourDatabase[2]);
+    ourDatabase[1]->addNext(ourDatabase[3]);
+    ourDatabase[1]->addNext(ourDatabase[0]);
+    Website site("../Database/Site.json","../Database/Site_ID.json", ourDatabase[1]);
+    site.websiteSearch(costumerProduct, 1);
     char c='y';
     while (c=='y') {
-        costumerProduct=makeProduct();
+        ;costumerProduct=makeProduct();
         cout<<"Do you want search again?(y/n)\n";
         cin>>c;
     }

@@ -21,11 +21,12 @@ Website::Website(string databaseName, string productIDs, Storage *nextObj):next(
 
 void Website::websiteSearch(json product, int quantity){
     int i=0;
+    vector<bool> shops;
     for(auto& element : database){
         if(element==product){
             cout<<ids[i];
             next->printBase();
-            next->isAvaliable(ids[i] ,quantity);
+            next->isAvaliable(ids[i] ,quantity, shops);
             return;
         }
         i++;

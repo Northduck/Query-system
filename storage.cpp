@@ -16,15 +16,16 @@ void Storage::addNext(Storage *n)
         next = n;
 }
 
-void Storage::isAvaliable(int productID, int quantity){
+void Storage::isAvaliable(int productID, int quantity, std::vector<bool> &shopInStock){
+    shopInStock.push_back(false);
     std::cout<<"\n\n"<<database<<"\n\n";
     std::cout<<"\n\n"<<this->database<<"\n\n";
     int productNumber=productSearch(productID, quantity);
     if(productNumber!=-1){
-        about(database[productNumber]);
+        about(database[productNumber], shopInStock);
     }
     if(next){
-        next->isAvaliable(productID, quantity);
+        next->isAvaliable(productID, quantity, shopInStock);
     }
 }
 

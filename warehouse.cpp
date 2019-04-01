@@ -17,11 +17,15 @@ Warehouse::Warehouse(string databaseName, string storageFaq){
     finDatabase.close();
     finFaq.close();
 }
-void Warehouse::about(json good){
+void Warehouse::about(json good, std::vector<bool> &shopInStock){
     json info=getFaq();
-    cout<<"There is your product in warehouse. If you order today you can take it \n";
+    int i=0;
     for(auto& element : info){
-        cout<<"in "<<element["name"]<<" in "<<element["deliveryTime"]<<" days\n";
+        if(shopInStock[i]==false){
+            cout<<"If you order today you can take it \n";
+            cout<<"in "<<element["name"]<<" in "<<element["deliveryTime"]<<" days\n";
+        }
+        i++;
     }
     cout<<"Quantity is "<< good["quantity"]<<endl;
 }

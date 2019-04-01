@@ -8,7 +8,7 @@
 
 #include "store.hpp"
 
-Store::Store(string databaseName, string storageFaq){
+Store::Store(string databaseName, string storageFaq, int numb):storeNumb(numb){
     json data, info;
     ifstream finDatabase(databaseName);
     ifstream finFaq(storageFaq);
@@ -18,7 +18,15 @@ Store::Store(string databaseName, string storageFaq){
     finDatabase.close();
     finFaq.close();
 }
-void Store::about(json good){
+void Store::about(json good, std::vector<bool> &shopInStock){
+    for(int el: shopInStock){
+        cout<<el<<endl;
+    }
+    cout<<endl<<storeNumb<<endl;
+    shopInStock[storeNumb]=true;
+    for(int el: shopInStock){
+        cout<<el<<endl;
+    }
     cout<<getFaq()<<"\n\n"<<good;
     json info=getFaq();
     cout<<"Good news! There is your product in "<<info["name"]<<"store in quantity of "<<good["quantity"];

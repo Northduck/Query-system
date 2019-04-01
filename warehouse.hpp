@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "json.hpp"
 #include "storage.hpp"
 #include "store.hpp"
@@ -23,6 +24,6 @@ private:
 public:
     Warehouse(string databaseName, string storageFaq);
     
-    void about(json good);
+    void about(json good, std::vector<bool> &shopInStock);
 };
 #endif /* warehouse_hpp */

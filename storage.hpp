@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <typeinfo>
+#include <vector>
 #include "json.hpp"
 using json = nlohmann::json;
 class Storage {
@@ -22,9 +22,9 @@ private:
 public:
     void addNext(Storage *n);
     
-    virtual void about(json about)=0;
+    virtual void about(json about, std::vector<bool> &shopInStock)=0;
     
-    void isAvaliable(int productID, int quantity);
+    void isAvaliable(int productID, int quantity, std::vector<bool> &shopInStock);
     
     int productSearch(int productID, int quantity);
     
