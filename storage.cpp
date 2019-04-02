@@ -9,7 +9,6 @@
 #include "storage.hpp"
 void Storage::addNext(Storage *n)
 {
-    std::cout<<"\n\n"<<database<<"\n\n";
     if (next!=NULL)
         next->addNext(n);
     else
@@ -18,8 +17,6 @@ void Storage::addNext(Storage *n)
 
 void Storage::isAvaliable(int productID, int quantity, std::vector<bool> &shopInStock){
     shopInStock.push_back(false);
-    std::cout<<"\n\n"<<database<<"\n\n";
-    std::cout<<"\n\n"<<this->database<<"\n\n";
     int productNumber=productSearch(productID, quantity);
     if(productNumber!=-1){
         about(database[productNumber], shopInStock);
