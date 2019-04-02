@@ -7,9 +7,6 @@
 //
 
 #include "website.hpp"
-
-
-
 Website::Website(string databaseName, string productIDs, Storage *nextObj):next(nextObj){
     ifstream finDatabase(databaseName);
     finDatabase>>database;
@@ -24,12 +21,10 @@ void Website::websiteSearch(json product, int quantity){
     vector<bool> shops;
     for(auto& element : database){
         if(element==product){
-            cout<<ids[i];
-            next->printBase();
             next->isAvaliable(ids[i] ,quantity, shops);
             return;
         }
         i++;
     }
-    cout<<"Sorry, there is no such product on our website, try again another product";
+    cout<<"Sorry, there is no such product on our website, try again another product\n";
 }

@@ -29,12 +29,12 @@ json makeProduct(){
         {"binding", ""},
         {"author", ""}
     };
-    cout<<"Enter the product";
+    cout<<"Enter the product ";
+    getline(cin, tempInput, '\n');
     for (auto& el : product.items()) {
-        std::cout << el.key()<<"  ";
-        cout<<product[el.key()].type_name() << "\n";
+        cout << el.key()<<"\n";
         if(product[el.key()].type_name()=="string"||product[el.key()].type_name()=="boolean"){
-            cin>>tempInput;
+            getline(cin, tempInput, '\n');
             if(product[el.key()].type_name()=="boolean"){
                 if(tempInput=="0"){
                     product[el.key()]=false;
@@ -55,7 +55,7 @@ int main() {
     ifstream finDatabase("../Database/product.json");
     finDatabase>>costumerProduct;
     finDatabase.close();
-    cout<<costumerProduct;
+    cout<<costumerProduct<<endl<<endl;
     Storage *ourDatabase[4];
     ourDatabase[0]=new Warehouse("../Database/Warehouse.json", "../Info/Warehouse_info.json");
     ourDatabase[1]=new Store("../Database/Shop1.json", "../Info/Shop1_info.json",0);
@@ -65,13 +65,20 @@ int main() {
     ourDatabase[1]->addNext(ourDatabase[3]);
     ourDatabase[1]->addNext(ourDatabase[0]);
     Website site("../Database/Site.json","../Database/Site_ID.json", ourDatabase[1]);
-    site.websiteSearch(costumerProduct, 1);
-    char c='y';
+    char c;
+    int quan=0;
+    cout<<"Do you want search product?(y/n)\n";
+    c=getchar();
     while (c=='y') {
-        ;costumerProduct=makeProduct();
+        costumerProduct=makeProduct();
+        cout<<"Enter quatity of your product\n";
+        cin>>quan;
+        site.websiteSearch(costumerProduct, quan);
         cout<<"Do you want search again?(y/n)\n";
         cin>>c;
+        if(c=='n'){
+            break;
+        }
     }
-    free(ourDatabase);
     return 0;
 }
